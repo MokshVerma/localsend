@@ -31,6 +31,7 @@ class SettingsState with SettingsStateMappable {
   final SendMode sendMode;
   final bool saveWindowPlacement;
   final bool alwaysOnTop;
+  final bool quickSendHotkey; // global hotkey that sends the clipboard to a picked device, only Windows
   final bool enableAnimations;
   final DeviceType? deviceType;
   final String? deviceModel;
@@ -64,6 +65,7 @@ class SettingsState with SettingsStateMappable {
     required this.sendMode,
     required this.saveWindowPlacement,
     required this.alwaysOnTop,
+    required this.quickSendHotkey,
     required this.enableAnimations,
     required this.deviceType,
     required this.deviceModel,

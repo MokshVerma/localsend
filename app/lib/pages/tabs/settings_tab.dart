@@ -99,6 +99,16 @@ class SettingsTab extends StatelessWidget {
                         : null,
                   ),
 
+                  if (checkPlatform([TargetPlatform.windows]))
+                    _BooleanEntry(
+                      label: t.settingsTab.general.quickSendHotkey,
+                      description: t.settingsTab.general.quickSendHotkeyDescription,
+                      value: vm.settings.quickSendHotkey,
+                      onChanged: (b) async {
+                        await ref.notifier(settingsProvider).setQuickSendHotkey(b);
+                      },
+                    ),
+
                   /// Wayland does window position handling, so there's no need for it. See [https://github.com/localsend/localsend/issues/544]
                   if (vm.advanced && checkPlatformIsNotWaylandDesktop())
                     _BooleanEntry(

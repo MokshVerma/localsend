@@ -70,6 +70,7 @@ class SettingsService extends PureNotifier<SettingsState> {
     sendMode: _persistence.getSendMode(),
     saveWindowPlacement: _persistence.getSaveWindowPlacement(),
     alwaysOnTop: _persistence.getAlwaysOnTop(),
+    quickSendHotkey: _persistence.getQuickSendHotkey(),
     enableAnimations: _persistence.getEnableAnimations(),
     deviceType: _persistence.getDeviceType(),
     deviceModel: _persistence.getDeviceModel(),
@@ -259,6 +260,11 @@ class SettingsService extends PureNotifier<SettingsState> {
     }
     await _persistence.setAlwaysOnTop(alwaysOnTop);
     state = state.copyWith(alwaysOnTop: alwaysOnTop);
+  }
+
+  Future<void> setQuickSendHotkey(bool quickSendHotkey) async {
+    await _persistence.setQuickSendHotkey(quickSendHotkey);
+    state = state.copyWith(quickSendHotkey: quickSendHotkey);
   }
 
   Future<void> setEnableAnimations(bool enableAnimations) async {

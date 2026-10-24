@@ -65,6 +65,7 @@ const _windowWidth = 'ls_window_width';
 const _windowHeight = 'ls_window_height';
 const _saveWindowPlacement = 'ls_save_window_placement';
 const _alwaysOnTop = 'ls_always_on_top';
+const _quickSendHotkey = 'ls_quick_send_hotkey';
 
 // Settings
 const _showToken = 'ls_show_token';
@@ -566,6 +567,14 @@ class PersistenceService {
 
   bool getAlwaysOnTop() {
     return _prefs.getBool(_alwaysOnTop) ?? false;
+  }
+
+  Future<void> setQuickSendHotkey(bool quickSendHotkey) async {
+    await _prefs.setBool(_quickSendHotkey, quickSendHotkey);
+  }
+
+  bool getQuickSendHotkey() {
+    return _prefs.getBool(_quickSendHotkey) ?? false;
   }
 
   Future<void> setEnableAnimations(bool enableAnimations) async {

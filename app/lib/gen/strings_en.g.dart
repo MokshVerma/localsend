@@ -764,6 +764,7 @@ class Translations$dialogs$en {
     _root,
   );
   late final Translations$dialogs$errorDialog$en errorDialog = Translations$dialogs$errorDialog$en.internal(_root);
+  late final Translations$dialogs$quickSendDialog$en quickSendDialog = Translations$dialogs$quickSendDialog$en.internal(_root);
   late final Translations$dialogs$favoriteDialog$en favoriteDialog = Translations$dialogs$favoriteDialog$en.internal(_root);
   late final Translations$dialogs$favoriteDeleteDialog$en favoriteDeleteDialog = Translations$dialogs$favoriteDeleteDialog$en.internal(_root);
   late final Translations$dialogs$favoriteEditDialog$en favoriteEditDialog = Translations$dialogs$favoriteEditDialog$en.internal(_root);
@@ -1087,6 +1088,12 @@ class Translations$settingsTab$general$en {
 
   /// en: 'Not supported on Wayland'
   String get alwaysOnTopUnavailable => 'Not supported on Wayland';
+
+  /// en: 'Quick send hotkey (Ctrl+Alt+C)'
+  String get quickSendHotkey => 'Quick send hotkey (Ctrl+Alt+C)';
+
+  /// en: 'Copies the current selection and lets you pick a device to send it to'
+  String get quickSendHotkeyDescription => 'Copies the current selection and lets you pick a device to send it to';
 
   /// en: 'Minimize to the System Tray/Menu Bar when closing'
   String get minimizeToTray => 'Minimize to the System Tray/Menu Bar when closing';
@@ -1520,6 +1527,21 @@ class Translations$dialogs$errorDialog$en {
 
   /// en: 'Error'
   String get title => _root.general.error;
+}
+
+// Path: dialogs.quickSendDialog
+class Translations$dialogs$quickSendDialog$en {
+  Translations$dialogs$quickSendDialog$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Send to'
+  String get title => 'Send to';
+
+  /// en: 'No devices found yet. Make sure LocalSend is open on the other device.'
+  String get noDevices => 'No devices found yet. Make sure LocalSend is open on the other device.';
 }
 
 // Path: dialogs.favoriteDialog

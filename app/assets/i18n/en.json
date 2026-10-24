@@ -108,6 +108,8 @@
       "saveWindowPlacementWindows": "Save window position after exit",
       "alwaysOnTop": "Always on top",
       "alwaysOnTopUnavailable": "Not supported on Wayland",
+      "quickSendHotkey": "Quick send hotkey (Ctrl+Alt+C)",
+      "quickSendHotkeyDescription": "Copies the current selection and lets you pick a device to send it to",
       "minimizeToTray": "Minimize to the System Tray/Menu Bar when closing",
       "launchAtStartup": "Autostart after login",
       "launchMinimized": "Autostart: Start hidden",
@@ -436,6 +438,10 @@
     },
     "errorDialog": {
       "title": "@:general.error"
+    },
+    "quickSendDialog": {
+      "title": "Send to",
+      "noDevices": "No devices found yet. Make sure LocalSend is open on the other device."
     },
     "favoriteDialog": {
       "title": "Favorites",

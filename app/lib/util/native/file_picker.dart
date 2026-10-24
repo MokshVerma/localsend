@@ -290,10 +290,24 @@ Future<void> _pickText(BuildContext context, Ref ref) async {
 }
 
 Future<void> _pickClipboard(BuildContext context, Ref ref) async {
+  if (await pickClipboardIntoSelection(ref) || !context.mounted) {
+    return;
+  }
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(t.general.noItemInClipboard),
+    ),
+  );
+}
+
+/// Adds the text, image or files from the clipboard to the selection.
+/// Returns false if the clipboard has nothing to send.
+Future<bool> pickClipboardIntoSelection(Ref ref) async {
   final data = await Clipboard.getData(Clipboard.kTextPlain);
   if (data?.text != null) {
     ref.redux(selectedSendingFilesProvider).dispatch(AddMessageAction(message: data!.text!));
-    return;
+    return true;
   }
 
   final image = await Pasteboard.image;
@@ -325,7 +339,7 @@ Future<void> _pickClipboard(BuildContext context, Ref ref) async {
             fileName: fileName,
           ),
         );
-    return;
+    return true;
   }
 
   final List<String> files = await Pasteboard.files();
@@ -354,18 +368,10 @@ Future<void> _pickClipboard(BuildContext context, Ref ref) async {
             },
           ),
         );
-    return;
+    return true;
   }
 
-  if (!context.mounted) {
-    return;
-  }
-
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(t.general.noItemInClipboard),
-    ),
-  );
+  return false;
 }
 
 Future<void> _pickApp(BuildContext context) async {
