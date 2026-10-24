@@ -29,7 +29,8 @@ class _QuickSendWatcherState extends State<QuickSendWatcher> with Refena {
 
   @override
   Widget build(BuildContext context) {
-    final enabled = checkPlatform([TargetPlatform.windows]) && ref.watch(settingsProvider.select((settings) => settings.quickSendHotkey));
+    final enabled =
+        checkPlatform([TargetPlatform.windows, TargetPlatform.macOS]) && ref.watch(settingsProvider.select((settings) => settings.quickSendHotkey));
     if (enabled != _registered) {
       _registered = enabled;
       unawaited(setQuickSendHotkeyEnabled(enabled));

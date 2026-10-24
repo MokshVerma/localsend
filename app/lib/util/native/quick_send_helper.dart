@@ -8,6 +8,7 @@ import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:localsend_app/provider/network/send_provider.dart';
 import 'package:localsend_app/provider/selection/selected_sending_files_provider.dart';
 import 'package:localsend_app/util/native/file_picker.dart';
+import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/native/tray_helper.dart';
 import 'package:localsend_app/widget/dialogs/quick_send_dialog.dart';
 import 'package:localsend_isolates/model/device.dart';
@@ -28,7 +29,7 @@ final _hotKey = HotKey(
 bool _busy = false;
 
 /// Registers or unregisters the global hotkey that sends the current selection
-/// (or the clipboard) to a device picked from a list. Only supported on Windows.
+/// (or the clipboard) to a device picked from a list. Only supported on Windows and macOS.
 Future<void> setQuickSendHotkeyEnabled(bool enabled) async {
   try {
     if (enabled) {
@@ -49,9 +50,13 @@ Future<void> _handleHotKey() async {
   try {
     final ref = RefenaScope.defaultRef;
 
-    _simulateCopy();
-    // Give the foreground app time to fill the clipboard.
-    await Future<void>.delayed(const Duration(milliseconds: 250));
+    // macOS only sends what is already on the clipboard:
+    // simulating the key press needs the Accessibility permission, which sandboxed apps cannot get.
+    if (checkPlatform([TargetPlatform.windows])) {
+      _simulateCopy();
+      // Give the foreground app time to fill the clipboard.
+      await Future<void>.delayed(const Duration(milliseconds: 250));
+    }
 
     ref.redux(selectedSendingFilesProvider).dispatch(ClearSelectionAction());
     if (!await pickClipboardIntoSelection(ref)) {

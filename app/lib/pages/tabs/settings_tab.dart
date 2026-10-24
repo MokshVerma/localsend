@@ -99,10 +99,14 @@ class SettingsTab extends StatelessWidget {
                         : null,
                   ),
 
-                  if (checkPlatform([TargetPlatform.windows]))
+                  if (checkPlatform([TargetPlatform.windows, TargetPlatform.macOS]))
                     _BooleanEntry(
-                      label: t.settingsTab.general.quickSendHotkey,
-                      description: t.settingsTab.general.quickSendHotkeyDescription,
+                      label: checkPlatform([TargetPlatform.macOS])
+                          ? t.settingsTab.general.quickSendHotkeyMacos
+                          : t.settingsTab.general.quickSendHotkey,
+                      description: checkPlatform([TargetPlatform.macOS])
+                          ? t.settingsTab.general.quickSendHotkeyDescriptionMacos
+                          : t.settingsTab.general.quickSendHotkeyDescription,
                       value: vm.settings.quickSendHotkey,
                       onChanged: (b) async {
                         await ref.notifier(settingsProvider).setQuickSendHotkey(b);

@@ -1095,6 +1095,12 @@ class Translations$settingsTab$general$en {
   /// en: 'Copies the current selection and lets you pick a device to send it to'
   String get quickSendHotkeyDescription => 'Copies the current selection and lets you pick a device to send it to';
 
+  /// en: 'Quick send hotkey (Control+Option+C)'
+  String get quickSendHotkeyMacos => 'Quick send hotkey (Control+Option+C)';
+
+  /// en: 'Copy something first, then let this shortcut send it to a device you pick'
+  String get quickSendHotkeyDescriptionMacos => 'Copy something first, then let this shortcut send it to a device you pick';
+
   /// en: 'Minimize to the System Tray/Menu Bar when closing'
   String get minimizeToTray => 'Minimize to the System Tray/Menu Bar when closing';
 
