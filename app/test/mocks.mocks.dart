@@ -624,6 +624,42 @@ class MockPersistenceService extends _i1.Mock implements _i4.PersistenceService 
           as bool);
 
   @override
+  _i5.Future<void> setAlwaysOnTop(bool? alwaysOnTop) =>
+      (super.noSuchMethod(
+            Invocation.method(#setAlwaysOnTop, [alwaysOnTop]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
+
+  @override
+  bool getAlwaysOnTop() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAlwaysOnTop, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
+
+  @override
+  _i5.Future<void> setQuickSendHotkey(bool? quickSendHotkey) =>
+      (super.noSuchMethod(
+            Invocation.method(#setQuickSendHotkey, [quickSendHotkey]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
+
+  @override
+  bool getQuickSendHotkey() =>
+      (super.noSuchMethod(
+            Invocation.method(#getQuickSendHotkey, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
+
+  @override
   _i5.Future<void> setEnableAnimations(bool? enableAnimations) =>
       (super.noSuchMethod(
             Invocation.method(#setEnableAnimations, [enableAnimations]),
