@@ -42,6 +42,9 @@ pub struct Ui {
     out: Stdout,
     status: Option<String>,
 
+    /// Writes nothing: stdout belongs to another protocol (see `mcp`).
+    quiet: bool,
+
     /// While suspended (the file picker owns the alternate screen), log lines
     /// are buffered and flushed on [Ui::resume].
     suspended: bool,
@@ -53,8 +56,18 @@ impl Ui {
         Self {
             out: stdout(),
             status: None,
+            quiet: false,
             suspended: false,
             buffer: Vec::new(),
+        }
+    }
+
+    /// A [Ui] that discards everything, for modes whose stdout carries a
+    /// protocol instead of a log.
+    pub fn quiet() -> Self {
+        Self {
+            quiet: true,
+            ..Self::new()
         }
     }
 
@@ -87,6 +100,9 @@ impl Ui {
     }
 
     fn print_block(&mut self, category: Option<Category>, text: &str) {
+        if self.quiet {
+            return;
+        }
         self.clear_status_line();
         for (i, line) in text.lines().enumerate() {
             let formatted = match (i, category) {
@@ -108,6 +124,9 @@ impl Ui {
 
     /// Replaces the status line at the bottom, or removes it with `None`.
     pub fn set_status(&mut self, status: Option<String>) {
+        if self.quiet {
+            return;
+        }
         if status == self.status {
             return;
         }

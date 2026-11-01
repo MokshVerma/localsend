@@ -10,6 +10,7 @@ mod ui;
 mod util;
 
 use clap::{Parser, Subcommand};
+use std::net::SocketAddr;
 use std::path::PathBuf;
 
 #[derive(Subcommand)]
@@ -27,6 +28,17 @@ pub enum Command {
         /// Files or directories to send (directories are collected recursively)
         #[arg(value_name = "PATH", required_unless_present = "text", num_args = 1..)]
         paths: Vec<PathBuf>,
+    },
+
+    /// Run an MCP server, so an AI agent can send files and handle incoming transfers
+    Mcp {
+        /// Serve over HTTP on this loopback address (endpoint `/mcp`) instead of stdio
+        #[arg(long, value_name = "ADDR")]
+        http: Option<SocketAddr>,
+
+        /// With --http: shut down when stdin closes, so a parent holding a pipe controls the lifetime
+        #[arg(long, requires = "http")]
+        exit_on_stdin_close: bool,
     },
 }
 

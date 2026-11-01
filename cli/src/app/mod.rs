@@ -2,6 +2,7 @@ mod devices;
 mod discovery;
 mod headless;
 mod keys;
+mod mcp;
 mod receive;
 mod sending;
 mod status;
@@ -75,6 +76,20 @@ pub enum AppEvent {
 }
 
 pub async fn run(args: Args) -> anyhow::Result<()> {
+    if let Some(Command::Mcp {
+        http,
+        exit_on_stdin_close,
+    }) = &args.command
+    {
+        let transport = match http {
+            Some(addr) => mcp::Transport::Http {
+                addr: *addr,
+                exit_on_stdin_close: *exit_on_stdin_close,
+            },
+            None => mcp::Transport::Stdio,
+        };
+        return mcp::run(storage::Repository::load(&args)?, transport).await;
+    }
     let (payload, target) = match &args.command {
         Some(Command::Send { to, text, paths }) => {
             let payload = match text {
@@ -86,6 +101,7 @@ pub async fn run(args: Args) -> anyhow::Result<()> {
                 to.as_deref().map(TargetSelector::parse).transpose()?,
             )
         }
+        Some(Command::Mcp { .. }) => unreachable!("handled above"),
         None => (Payload::Files(Vec::new()), None),
     };
     if let Payload::Files(paths) = &payload {

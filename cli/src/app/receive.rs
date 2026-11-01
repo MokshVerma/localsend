@@ -91,7 +91,7 @@ impl ReceiveSession {
 
 /// Returns the text of a "message request": a single text file whose content
 /// is already included as a preview, so there is nothing left to transfer.
-fn message_of(files: &HashMap<String, FileDto>) -> Option<&str> {
+pub(super) fn message_of(files: &HashMap<String, FileDto>) -> Option<&str> {
     if files.len() != 1 {
         return None;
     }
