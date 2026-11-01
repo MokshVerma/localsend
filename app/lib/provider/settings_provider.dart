@@ -71,6 +71,7 @@ class SettingsService extends PureNotifier<SettingsState> {
     saveWindowPlacement: _persistence.getSaveWindowPlacement(),
     alwaysOnTop: _persistence.getAlwaysOnTop(),
     quickSendHotkey: _persistence.getQuickSendHotkey(),
+    agentServer: _persistence.getAgentServer(),
     enableAnimations: _persistence.getEnableAnimations(),
     deviceType: _persistence.getDeviceType(),
     deviceModel: _persistence.getDeviceModel(),
@@ -265,6 +266,11 @@ class SettingsService extends PureNotifier<SettingsState> {
   Future<void> setQuickSendHotkey(bool quickSendHotkey) async {
     await _persistence.setQuickSendHotkey(quickSendHotkey);
     state = state.copyWith(quickSendHotkey: quickSendHotkey);
+  }
+
+  Future<void> setAgentServer(bool agentServer) async {
+    await _persistence.setAgentServer(agentServer);
+    state = state.copyWith(agentServer: agentServer);
   }
 
   Future<void> setEnableAnimations(bool enableAnimations) async {

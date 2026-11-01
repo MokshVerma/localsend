@@ -660,6 +660,24 @@ class MockPersistenceService extends _i1.Mock implements _i4.PersistenceService 
           as bool);
 
   @override
+  _i5.Future<void> setAgentServer(bool? agentServer) =>
+      (super.noSuchMethod(
+            Invocation.method(#setAgentServer, [agentServer]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
+
+  @override
+  bool getAgentServer() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAgentServer, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
+
+  @override
   _i5.Future<void> setEnableAnimations(bool? enableAnimations) =>
       (super.noSuchMethod(
             Invocation.method(#setEnableAnimations, [enableAnimations]),

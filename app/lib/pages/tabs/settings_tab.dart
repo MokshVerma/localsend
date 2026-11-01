@@ -8,6 +8,7 @@ import 'package:localsend_app/pages/changelog_page.dart';
 import 'package:localsend_app/pages/donation/donation_page.dart';
 import 'package:localsend_app/pages/settings/network_interfaces_page.dart';
 import 'package:localsend_app/pages/tabs/settings_tab_controller.dart';
+import 'package:localsend_app/provider/agent_server_provider.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/provider/version_provider.dart';
@@ -314,6 +315,42 @@ class SettingsTab extends StatelessWidget {
                     value: vm.settings.createChecksums,
                     onChanged: (b) async {
                       await ref.notifier(settingsProvider).setCreateChecksums(b);
+                    },
+                  ),
+                ],
+              ),
+            if (checkPlatformIsDesktop())
+              _SettingsSection(
+                title: t.settingsTab.agent.title,
+                children: [
+                  Builder(
+                    builder: (context) {
+                      final agent = context.ref.watch(agentServerProvider);
+                      final status = switch (agent.status) {
+                        AgentServerStatus.starting => t.settingsTab.agent.statusStarting,
+                        AgentServerStatus.running => t.settingsTab.agent.statusRunning(url: agentServerUrl),
+                        AgentServerStatus.stopped => t.settingsTab.agent.statusStopped,
+                        AgentServerStatus.failed => t.settingsTab.agent.statusFailed(error: agent.error ?? ''),
+                        AgentServerStatus.unavailable => t.settingsTab.agent.statusUnavailable,
+                      };
+                      return Column(
+                        children: [
+                          _BooleanEntry(
+                            label: t.settingsTab.agent.server,
+                            description: '${t.settingsTab.agent.serverDescription}\n$status',
+                            value: vm.settings.agentServer,
+                            onChanged: (b) async {
+                              await context.ref.notifier(settingsProvider).setAgentServer(b);
+                            },
+                          ),
+                          if (vm.settings.agentServer && agent.status != AgentServerStatus.unavailable)
+                            _ButtonEntry(
+                              label: t.settingsTab.agent.restart,
+                              buttonLabel: t.settingsTab.agent.restartButton,
+                              onTap: () => context.ref.notifier(agentServerProvider).restart(),
+                            ),
+                        ],
+                      );
                     },
                   ),
                 ],

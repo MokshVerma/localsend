@@ -132,6 +132,11 @@ class SettingsStateMapper extends ClassMapperBase<SettingsState> {
     'quickSendHotkey',
     _$quickSendHotkey,
   );
+  static bool _$agentServer(SettingsState v) => v.agentServer;
+  static const Field<SettingsState, bool> _f$agentServer = Field(
+    'agentServer',
+    _$agentServer,
+  );
   static bool _$enableAnimations(SettingsState v) => v.enableAnimations;
   static const Field<SettingsState, bool> _f$enableAnimations = Field(
     'enableAnimations',
@@ -205,6 +210,7 @@ class SettingsStateMapper extends ClassMapperBase<SettingsState> {
     #saveWindowPlacement: _f$saveWindowPlacement,
     #alwaysOnTop: _f$alwaysOnTop,
     #quickSendHotkey: _f$quickSendHotkey,
+    #agentServer: _f$agentServer,
     #enableAnimations: _f$enableAnimations,
     #deviceType: _f$deviceType,
     #deviceModel: _f$deviceModel,
@@ -241,6 +247,7 @@ class SettingsStateMapper extends ClassMapperBase<SettingsState> {
       saveWindowPlacement: data.dec(_f$saveWindowPlacement),
       alwaysOnTop: data.dec(_f$alwaysOnTop),
       quickSendHotkey: data.dec(_f$quickSendHotkey),
+      agentServer: data.dec(_f$agentServer),
       enableAnimations: data.dec(_f$enableAnimations),
       deviceType: data.dec(_f$deviceType),
       deviceModel: data.dec(_f$deviceModel),
@@ -343,6 +350,7 @@ abstract class SettingsStateCopyWith<$R, $In extends SettingsState, $Out>
     bool? saveWindowPlacement,
     bool? alwaysOnTop,
     bool? quickSendHotkey,
+    bool? agentServer,
     bool? enableAnimations,
     DeviceType? deviceType,
     String? deviceModel,
@@ -407,6 +415,7 @@ class _SettingsStateCopyWithImpl<$R, $Out>
     bool? saveWindowPlacement,
     bool? alwaysOnTop,
     bool? quickSendHotkey,
+    bool? agentServer,
     bool? enableAnimations,
     Object? deviceType = $none,
     Object? deviceModel = $none,
@@ -443,6 +452,7 @@ class _SettingsStateCopyWithImpl<$R, $Out>
         #saveWindowPlacement: saveWindowPlacement,
       if (alwaysOnTop != null) #alwaysOnTop: alwaysOnTop,
       if (quickSendHotkey != null) #quickSendHotkey: quickSendHotkey,
+      if (agentServer != null) #agentServer: agentServer,
       if (enableAnimations != null) #enableAnimations: enableAnimations,
       if (deviceType != $none) #deviceType: deviceType,
       if (deviceModel != $none) #deviceModel: deviceModel,
@@ -487,6 +497,7 @@ class _SettingsStateCopyWithImpl<$R, $Out>
     ),
     alwaysOnTop: data.get(#alwaysOnTop, or: $value.alwaysOnTop),
     quickSendHotkey: data.get(#quickSendHotkey, or: $value.quickSendHotkey),
+    agentServer: data.get(#agentServer, or: $value.agentServer),
     enableAnimations: data.get(#enableAnimations, or: $value.enableAnimations),
     deviceType: data.get(#deviceType, or: $value.deviceType),
     deviceModel: data.get(#deviceModel, or: $value.deviceModel),

@@ -135,6 +135,18 @@
       "shareViaLinkAutoAccept": "Automatically accept requests in \"Share via link\" mode",
       "createChecksums": "Create checksums when sending files"
     },
+    "agent": {
+      "title": "AI agents",
+      "server": "MCP server for AI agents",
+      "serverDescription": "Lets agents like Claude send files and handle incoming transfers",
+      "statusStarting": "Starting...",
+      "statusRunning": "Running at {url}",
+      "statusStopped": "Stopped",
+      "statusFailed": "Failed: {error}",
+      "statusUnavailable": "localsend-cli was not found next to the app",
+      "restart": "Restart server",
+      "restartButton": "Restart"
+    },
     "network": {
       "title": "Network",
       "needRestart": "Restart the server to apply the settings!",

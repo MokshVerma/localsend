@@ -32,6 +32,7 @@ class SettingsState with SettingsStateMappable {
   final bool saveWindowPlacement;
   final bool alwaysOnTop;
   final bool quickSendHotkey; // global hotkey that sends the clipboard to a picked device, only Windows
+  final bool agentServer; // MCP server for AI agents that runs next to the app, only desktop
   final bool enableAnimations;
   final DeviceType? deviceType;
   final String? deviceModel;
@@ -66,6 +67,7 @@ class SettingsState with SettingsStateMappable {
     required this.saveWindowPlacement,
     required this.alwaysOnTop,
     required this.quickSendHotkey,
+    required this.agentServer,
     required this.enableAnimations,
     required this.deviceType,
     required this.deviceModel,

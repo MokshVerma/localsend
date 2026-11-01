@@ -274,6 +274,7 @@ class Translations$settingsTab$en {
   late final Translations$settingsTab$general$en general = Translations$settingsTab$general$en.internal(_root);
   late final Translations$settingsTab$receive$en receive = Translations$settingsTab$receive$en.internal(_root);
   late final Translations$settingsTab$send$en send = Translations$settingsTab$send$en.internal(_root);
+  late final Translations$settingsTab$agent$en agent = Translations$settingsTab$agent$en.internal(_root);
   late final Translations$settingsTab$network$en network = Translations$settingsTab$network$en.internal(_root);
   late final Translations$settingsTab$other$en other = Translations$settingsTab$other$en.internal(_root);
 
@@ -1172,6 +1173,45 @@ class Translations$settingsTab$send$en {
 
   /// en: 'Create checksums when sending files'
   String get createChecksums => 'Create checksums when sending files';
+}
+
+// Path: settingsTab.agent
+class Translations$settingsTab$agent$en {
+  Translations$settingsTab$agent$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'AI agents'
+  String get title => 'AI agents';
+
+  /// en: 'MCP server for AI agents'
+  String get server => 'MCP server for AI agents';
+
+  /// en: 'Lets agents like Claude send files and handle incoming transfers'
+  String get serverDescription => 'Lets agents like Claude send files and handle incoming transfers';
+
+  /// en: 'Starting...'
+  String get statusStarting => 'Starting...';
+
+  /// en: 'Running at {url}'
+  String statusRunning({required Object url}) => 'Running at ${url}';
+
+  /// en: 'Stopped'
+  String get statusStopped => 'Stopped';
+
+  /// en: 'Failed: {error}'
+  String statusFailed({required Object error}) => 'Failed: ${error}';
+
+  /// en: 'localsend-cli was not found next to the app'
+  String get statusUnavailable => 'localsend-cli was not found next to the app';
+
+  /// en: 'Restart server'
+  String get restart => 'Restart server';
+
+  /// en: 'Restart'
+  String get restartButton => 'Restart';
 }
 
 // Path: settingsTab.network
